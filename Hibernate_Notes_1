@@ -1,0 +1,203 @@
+app.xml
+Configuration cfg = new Configuration();
+    	cfg.configure("hibernate.cfg.xml");
+    	SessionFactory factory = cfg.buildSessionFactory();
+    	Session session = factory.openSession();
+    	Transaction tx = session.beginTransaction();
+    	
+    	Answer a1 = new Answer(1, "java is plateform", "khushboo");
+    	Answer a2 = new Answer(2, "java is programming language", "Neha");
+    	List<Answer> anslist = new ArrayList<>();
+    	anslist.add(a1);
+    	anslist.add(a2);
+    	
+    	Answer a3 = new Answer(3, "Python is OOPs", "Pratik");
+    	Answer a4 = new Answer(4, "Python is programming language", "Manju");
+    	List<Answer> anslist1 = new ArrayList<>();
+    	anslist1.add(a3);
+    	anslist1.add(a4);
+    	
+    	Question q1  = new Question(1, "What is Java?", anslist);
+    	Question q2  = new Question(2, "What is Python?", anslist1);
+    	
+    	session.persist(q1);
+    	session.persist(q2);
+    	
+    	tx.commit();
+    	session.close();  
+		
+		
+
+question
+package com.spring.HiberNatePro;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Question {
+	@Id
+	private int id;
+	private String name;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "qId")
+	private List<Answer> answers;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+	public Question(int id, String name, List<Answer> answers) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.answers = answers;
+	}
+	public Question() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", name=" + name + ", answers=" + answers + "]";
+	}
+	
+	
+
+}
+
+answers
+
+package com.spring.HiberNatePro;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Answer {
+	@Id
+	private int id;
+	private String answer;
+	private String postedBy;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getAnswer() {
+		return answer;
+	}
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+	public String getPostedBy() {
+		return postedBy;
+	}
+	public void setPostedBy(String postedBy) {
+		this.postedBy = postedBy;
+	}
+	public Answer(int id, String answer, String postedBy) {
+		super();
+		this.id = id;
+		this.answer = answer;
+		this.postedBy = postedBy;
+	}
+	public Answer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "Answer [id=" + id + ", answer=" + answer + ", postedBy=" + postedBy + "]";
+	}
+	
+
+}
+
+
+xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+	
+<hibernate-configuration>  
+    <session-factory>  
+            
+    	<property name="hbm2ddl.auto">update</property>    
+        <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>    
+        <property name="connection.url">jdbc:mysql://localhost:3306/springjdbc</property>    
+        <property name="connection.username">root</property>    
+        <property name="connection.password">cfg1234</property>    
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>  
+        <property name="show_sql">true</property> 
+        <mapping class="com.spring.HiberNatePro.Question"/>
+        <mapping class="com.spring.HiberNatePro.Answer"/>
+    </session-factory>  
+</hibernate-configuration>  
+
+
+
+
+pom.xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.spring</groupId>
+	<artifactId>HiberNatePro</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>HiberNatePro</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+			<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+			
+		</dependency>
+		<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>5.6.6.Final</version>
+				<type>pom</type>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+			<dependency>
+				<groupId>com.mysql</groupId>
+				<artifactId>mysql-connector-j</artifactId>
+				<version>8.0.31</version>
+			</dependency>
+	</dependencies>
+</project>
