@@ -1,0 +1,38 @@
+1. print only duplicate elements.
+2. Input: "Hello There"
+    Output: "olleH erehT"
+3.  JUnit related questions:-
+a. Annotation Interface DataJpaTest
+
+	Annotation for a JPA test that focuses only on JPA components.
+	Using this annotation will disable full auto-configuration and instead apply only configuration relevant to JPA tests.
+
+	By default, tests annotated with @DataJpaTest are transactional and roll back at the end of each test. They also use an embedded in-memory database (replacing any explicit or usually auto-configured DataSource). The @AutoConfigureTestDatabase annotation can be used to override these settings.
+
+	SQL queries are logged by default by setting the spring.jpa.show-sql property to true. This can be disabled using the showSql attribute.
+
+	If you are looking to load your full application configuration, but use an embedded database, you should consider @SpringBootTest combined with @AutoConfigureTestDatabase rather than this annotation.
+
+	When using JUnit 4, this annotation should be used in combination with @RunWith(SpringRunner.class).
+
+b. ExtendWith is used for?
+	@ExtendWith(SpringExtension. class) — @ExtendWith annotation is used to register extensions for JUnit5 test, SpringExtension. class allows the test to load the Spring context and inject dependencies into the test class.
+	
+c. Difference between @mocks and @InjectMocks
+
+	The @Mock annotation is used to create a mock object for a particular class, while the @InjectMocks annotation is used to inject the mock object into the class being tested.
+
+It is important to note that @InjectMocks can only be used with classes, not with interfaces.
+
+
+
+
+
+4. Kafka notes:
+To start Zookeeper:- D:\kafka>.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+To start kafka server:- D:\kafka>.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+http:localhost:8080/api/v1/kafka/publish?message="hello world"
+To listenproducer:- D:\kafka>.\bin\windows\kafka-console-consumer.bat --topic myIntro quickstart-events --from-beginning --bootstrap-server localhost:9092
+
+
