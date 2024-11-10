@@ -1,0 +1,434 @@
+1. find the highest power of 2 that divides N
+
+		int num=16;
+		int result=0;
+		for(int i=0;i<num/2;i++) {
+			int r = (int)Math.pow(2, i);
+			if(num%r==0) {
+				result=i;
+			}
+		}
+		System.out.println("result is "+ result);
+		
+		
+2. create aabbaba string with geiven two integers.
+
+public static void main(String[] args) {
+		int a = 3;
+		int b = 5;
+		String str = "";
+		int len = a+b;
+		if(Math.abs(a-b)>3) {
+			System.out.println("not possible");
+		}
+		for(int i=0; i<len; i++) {
+			if(str.endsWith("aa")) {
+				str= str +"b";
+				b--;
+			}
+			else if(str.endsWith("bb")) {
+				str= str +"a";
+				a--;
+			}
+			else if(a>b) {
+				str= str +"a";
+				a--;
+			}
+			else {
+				str= str +"b";
+				b--;
+			}
+		}
+		System.out.println("string is  "+ str);
+	}
+	
+3. Count of each characters in a string.
+
+	public static void main(String[] args) {
+	String str = "kklln";
+	Map<Character, Integer> m= new HashMap<Character, Integer>();
+	char[] chArr= new char[str.length()];
+	chArr= str.toCharArray();
+	for(char ch :chArr) {
+		if(m.containsKey(ch)) {
+			m.put(ch, m.get(ch)+1);
+		}else {
+			m.put(ch, 1);
+		}
+	}
+	for(Map.Entry<Character, Integer> m1 : m.entrySet()) {
+		System.out.println(m1.getKey() +" : "+ m1.getValue());
+	}
+	}
+	
+	
+4. every possible string in a string
+
+	
+	String str = "kklln";
+	char[] ch = new char[str.length()];
+	for(int i=0;i<str.length();i++) {
+		for(int j=i+1; j<str.length()+1;j++) {
+			System.out.println(str.substring(i,j));
+		}
+	}
+	}
+	
+	
+5. wap to find longest no repeating string.
+
+	static boolean containDuplicate(String str) {
+		boolean flag=false;
+		Map<Character, Integer> m= new HashMap<Character, Integer>();
+		char[] chArr= new char[str.length()];
+		chArr= str.toCharArray();
+		for(char ch :chArr) {
+			if(m.containsKey(ch)) {
+				m.put(ch, m.get(ch)+1);
+			}else {
+				m.put(ch, 1);
+			}
+		}
+		for(Map.Entry<Character, Integer> m1 : m.entrySet()) {
+			if(m1.getValue()>1) {
+				flag=true;
+				break;
+			}else {
+				flag=false;
+			}
+		}
+		return flag;
+	}
+}
+
+
+
+	public class Practice {
+
+	public static void main(String[] args) {
+	String str = "Khushboo";
+	int longestLength = 0;
+	char[] ch = new char[str.length()];
+	for(int i=0;i<str.length();i++) {
+		for(int j=i+1; j<str.length()+1;j++) {
+			if(!DUplicate.containDuplicate(str.substring(i,j))) {
+				longestLength= Math.max((str.substring(i,j)).length(), longestLength);
+			}
+		}
+	}
+	System.out.println(longestLength);
+	}
+	
+	
+6. wap to reverse the string.
+	String str = "Khushboo";
+	String rev="";
+	for(int i=str.length()-1; i>=0;i--) {
+		rev= rev + str.charAt(i);
+	}
+	System.out.println(rev);
+	}
+	
+	
+7. wap to determine given string is palindrone or not 
+
+class DUplicate{
+	static String rev(String str) {
+		String rev="";
+		for(int i=str.length()-1; i>=0;i--) {
+			rev= rev + str.charAt(i);
+		}
+		return rev;
+	}
+}
+public class Practice {
+
+	public static void main(String[] args) {
+	String str = "aba";
+	if(DUplicate.rev(str).equalsIgnoreCase(str)){
+		System.out.println("palin");
+	}else {
+		System.out.println("not");
+	}
+	}
+}
+
+
+8. wap to find number of vowels and consonents.
+
+public static void main(String[] args) {
+	String str = "aba";
+	int vowels=0;
+	int consonent = 0;
+	char[] chArr =  new char[str.length()];
+	chArr = str.toCharArray();
+	
+	for(int i=0; i<str.length();i++) {
+		if(chArr[i] == 'a' ||chArr[i] == 'e' || chArr[i] == 'i' || chArr[i] == 'o'|| chArr[i] == 'u') {
+			vowels++;
+		}else {
+			consonent++;
+		}
+	}
+	System.out.println(vowels + " "+ consonent);
+	}
+	
+	
+9. wap to find given two string is anagram or not
+public static void main(String[] args) {
+	String str1 = "abc";
+	String str2 = "aba";
+	str1 = str1.toLowerCase();
+	str2 = str2.toLowerCase();
+	if(str1.length() == str2.length()) {
+		char[] ch1 = str1.toCharArray();
+		char[] ch2 = str2.toCharArray();
+		Arrays.sort(ch1);
+		Arrays.sort(ch2);
+		if(Arrays.equals(ch1, ch2)) {
+			System.out.println("anagram");
+		}else {
+			System.out.println("not");
+		}
+	}
+	
+	}
+	
+10. find the total number of words in a string
+
+public static void main(String[] args) {
+	String str1 = "this is ";
+	int count=0;
+	char[] ch = new char[str1.length()];
+	for(int i=0;i<str1.length();i++) {
+		ch[i] = str1.charAt(i);
+		if((i>0)&& (ch[i]!= ' ')&& (ch[i-1] ==' ')|| (i==0)&&(ch[i]!=' ')) {
+			count++;
+		}
+	}
+	System.out.println(count);
+	}
+	
+	vlllllllll;;
+11. wap to return numbers whose sum is equal to the target
+
+
+public static void main(String[] args) {
+	int[] arr = new int[] {1,2,3,4,5,6,7,8,9,0};
+	int target = 3;
+	Map<Integer, Integer> m = new HashMap<Integer, Integer>();
+	
+	for(int i=0;i<arr.length;i++) {
+		for(int j=i+1;j<arr.length;j++) {
+			if(arr[i]+arr[j] ==target) {
+				m.put(arr[i], arr[j]);
+			}
+		}
+	}
+	System.out.println(m);
+	}
+
+
+
+12. fibonacci
+public static void main(String[] args) {
+		int num=7;
+		int a=0;
+		int b=1;
+		int c;
+		System.out.print(a+" "+ b);
+		for(int i=0;i<num-2;i++) {
+			c=a+b;
+			System.out.print(" "+ c);
+			a=b;
+			b=c;
+		}
+	}
+	
+	
+13. prime
+public static void main(String[] args) {
+		int num=6;
+		int count=0;
+		
+		
+		for(int i=1;i<=num;i++) {
+			if(num%i==0) {
+				count++;
+			}
+		}
+		if(count==2) {
+			System.out.println("prime");
+		}else{
+			System.out.println("not");
+		}
+	}
+	
+14. palindrome
+public static void main(String[] args) {
+		int num=123;	
+		int r=0;
+		int temp = num;
+
+while(num>0) {
+	int x = num%10;
+	r=r*10+x;
+	num=num/10;
+}
+		if(r == temp) {
+			System.out.println("palindrome");
+		}else{
+			System.out.println("not");
+		}
+	}
+	
+15. fact
+
+class DUplicate{
+	static int fact(int num) {
+		if(num==0) {
+			return 1;
+		}else {
+			return num*fact(num-1);
+		}
+	}
+}
+public class Practice {
+
+	public static void main(String[] args) {
+		int num=3;	
+		System.out.println(DUplicate.fact(num));
+	}
+}
+
+
+16. left rotate by 3
+public static void main(String[] args) {
+		int n=3;
+		int[] arr = new int[] {1,2,3,4,5};
+		for(int i=0;i<n;i++) {
+			int j, first;
+			first= arr[0];
+			for(j=0;j<arr.length-1;j++) {
+				arr[j]=arr[j+1];
+			}
+			arr[j]=first;
+		}
+		System.out.println(Arrays.toString(arr));
+	}
+	
+	
+17. right rotate by 3
+public static void main(String[] args) {
+		int n=3;
+		int[] arr = new int[] {1,2,3,4,5};
+		for(int i=0;i<n;i++) {
+			int j, last;
+			last= arr[arr.length-1];
+			for(j=arr.length-1;j>0;j--) {
+				arr[j]=arr[j-1];
+			}
+			arr[j]=last;
+		}
+		System.out.println(Arrays.toString(arr));
+	}
+	
+	
+18. reverse array
+
+		int[] arr = new int[] {1,2,3,4,5};
+		int j = arr.length-1;
+		for(int i=0;i<arr.length/2;i++, j--) {
+			int temp=arr[i];
+			arr[i]=arr[j];
+			arr[j]=temp;
+		}
+		System.out.println(Arrays.toString(arr));
+		
+		
+19. remove duplicate
+
+public static void main(String[] args) {
+		
+		int[] arr = new int[] {1,2,3,3,4,5,5};
+		for(int i=0;i<arr.length;i++) {
+			for(int j=i+1; j<arr.length;j++) {
+				if(arr[i]==arr[j]) {
+					arr[i]=-1;
+				}
+			}
+		}
+		System.out.println(Arrays.toString(arr));
+	}
+	
+20. frequency of elements
+public static void main(String[] args) {
+		
+		int[] arr = new int[] {5,1,2,3,3,4,5,5};
+		int[] arr1= new int[arr.length];
+		int visited =-1;
+		int count;
+		for(int i=0;i<arr.length;i++) {
+			count = 1;
+			for(int j=i+1; j<arr.length;j++) {
+				if(arr[i]==arr[j]) {
+					count++;
+					arr1[j] = visited;
+				}
+			}
+			if(arr1[i]!=visited) {
+				arr1[i]= count;
+			}
+		}
+		for(int i=0;i<arr1.length;i++) {
+			if(arr1[i]!=-1) {
+				System.out.println(arr[i] +": "+arr1[i]);
+			}
+		}
+		
+	}
+	
+	
+	
+21. binary search
+
+
+import java.util.Arrays; //should be sorted array
+
+class DUplicate{
+	static int binarySearch(int[] arr, int first, int last, int key) {
+		if(last>=first) {
+		int mid = first+(last-first)/2;
+		if(key==arr[mid]) {
+			return mid;
+		}
+		if(arr[mid]>key) {
+			return binarySearch(arr, first, mid-1, key);
+		}else {
+			return binarySearch(arr, mid+1, last, key);
+		}
+		
+	}
+		return -1;
+}
+}
+public class Practice {
+
+	public static void main(String[] args) {
+		
+		int[] arr = new int[] {10,20,30,40,50};
+		int k = DUplicate.binarySearch(arr, 0, arr.length-1, 30);
+		System.out.println(k);
+	}
+}
+
+// comparing each element with each element back and forth
+for(int i=0; i<arr.length;i++) {
+			for(int j=0; j<arr.length;j++) {
+				if(i!=j)
+				System.out.println(arr[i] +" "+arr[j]);
+				
+			}
+		}
+
+	
