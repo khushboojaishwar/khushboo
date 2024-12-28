@@ -433,3 +433,103 @@ for(int i=0; i<arr.length;i++) {
 
 	
 pwd-17033707aq&8t
+
+
+
+
+
+
+
+
+--------------------------------sql queries----------------------------------------------------------------------------
+select distinct(name) from employee;
+select * from employee;
+select gender, avg(age) from employee
+group by gender;
+select max(salary) from employee;
+select * from employee where yearOfJoining>2015;
+select department, count(*) from employee
+group by department;
+select department, avg(salary) from employee
+group by department;
+select *  from employee where age=(select min(age) from employee); 
+select *  from employee where yearOfJoining=(select min(yearOfJoining) from employee); 
+select gender, count(*) from employee
+where department='Sales And Marketing'
+group by gender  ;
+select department from employee
+group by department;
+select sum(salary) from employee;
+select * from employee where salary in(select max(salary) from employee where salary not in( select max(salary) from employee));
+use springjdbc;
+select distinct(salary) from Employee order by  salary desc limit 4,1;
+
+#SELECT DISTINCT Salary FROM tblemployee ORDER BY Salary DESC LIMIT n-1 OFFSET 1
+
+select distinct(salary) from employee order by salary desc limit 1,1
+
+
+
+
+
+
+use springjdbc;
+select * from employee;
+
+select yearOfJoining from employee group by yearOfJoining having count(*)>1;
+
+use springjdbc;
+select * from question;
+select * from answer;
+select * from myStudent;
+select * from address;
+
+
+use springjdbc;
+select * from answer;
+select * from question;
+select * from q_ans1123;alter
+
+
+
+
+
+use springjdbc;
+
+select * from employee;
+
+select distinct(department) from employee;
+select gender, count(*) from employee
+where department='Sales And Marketing'
+group by gender ;
+
+select department, count(*) from employee
+group by department;
+
+select gender, avg(salary) from employee
+group by gender;
+select avg(salary) from employee;
+
+select department, count(*) from employee
+group by department;
+
+select name from employee where salary in (select max(salary) from employee);
+
+select * from employee where  gender = 'male' and department = 'Product Development';
+
+select name from employee where yearOfJoining in (select min(yearOfJoining) from employee);
+
+select distinct(salary) from employee order by salary desc limit 3, 1;
+SELECT s1.name, s1.salary 
+FROM employee s1
+INNER JOIN employee s2 ON s1.Salary = s2.Salary AND s1.Name <> s2.Name;
+
+select salary, count(name)
+from Employee
+group by salary;
+
+
+update employee 
+set salary =13500
+where id=188;
+;
